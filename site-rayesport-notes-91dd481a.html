@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>雷竞技 · 数字竞技专题</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f1f6fb;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1d2b3a;
+            line-height: 1.6;
+            padding: 1.5rem 1rem 3rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* Hero 杂志横幅 */
+        .hero {
+            background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+            border-radius: 2rem 2rem 2rem 2rem;
+            color: #e6f3f5;
+            padding: 3rem 2.5rem 2.8rem;
+            margin-bottom: 2.8rem;
+            position: relative;
+            box-shadow: 0 16px 32px -8px rgba(44, 83, 100, 0.28);
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle at 30% 70%, rgba(0, 210, 180, 0.25) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero h1 {
+            font-size: clamp(2.2rem, 6vw, 3.8rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            max-width: 80%;
+        }
+        .hero h1 span {
+            display: inline-block;
+            background: linear-gradient(135deg, #40e0d0, #72f0e0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 70%;
+            opacity: 0.88;
+            font-weight: 350;
+            margin-bottom: 0.4rem;
+        }
+        .hero .meta-tag {
+            display: inline-block;
+            background: rgba(64, 224, 208, 0.22);
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            letter-spacing: 0.4px;
+            color: #b2f3ec;
+            border: 1px solid rgba(64, 224, 208, 0.25);
+            margin-top: 1rem;
+        }
+
+        /* 网格卡片系统 */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin: 2.8rem 0 2.2rem;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 1.5rem 1.8rem;
+            box-shadow: 0 8px 18px rgba(28, 45, 60, 0.06);
+            transition: all 0.2s ease;
+            border: 1px solid #e6f0f5;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 28px rgba(0, 140, 130, 0.10);
+            border-color: #b0e0da;
+        }
+        .card .card-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+            display: block;
+            color: #1e8f87;
+        }
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 550;
+            margin-bottom: 0.55rem;
+            color: #0f2c33;
+        }
+        .card p {
+            font-size: 0.95rem;
+            color: #39505b;
+            margin-bottom: 0.2rem;
+        }
+        .card .accent-line {
+            width: 36px;
+            height: 4px;
+            background: linear-gradient(90deg, #40e0d0, #78c8be);
+            border-radius: 4px;
+            margin: 0.8rem 0 0.6rem;
+        }
+
+        /* 三段落自然叙述 */
+        .narrative {
+            background: #ffffffdd;
+            backdrop-filter: blur(4px);
+            padding: 2rem 2rem 1.8rem;
+            border-radius: 28px;
+            margin: 2.2rem 0 2.4rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            border: 1px solid #dce9ef;
+        }
+        .narrative p {
+            margin-bottom: 1.3rem;
+            font-size: 1.02rem;
+            word-break: break-word;
+        }
+        .narrative p:last-child {
+            margin-bottom: 0.3rem;
+        }
+        .narrative .highlight {
+            color: #0b7a70;
+            font-weight: 500;
+        }
+
+        /* 特色引用 / 提示区 */
+        .insight-block {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            background: linear-gradient(120deg, #eaf7f4, #dff0ec);
+            border-left: 6px solid #2aa79b;
+            border-radius: 0 24px 24px 0;
+            padding: 1.6rem 1.8rem;
+            margin: 2rem 0 2.4rem;
+            gap: 1rem;
+        }
+        .insight-block .block-marker {
+            font-size: 2.2rem;
+            line-height: 1;
+            color: #1b8b7f;
+            flex-shrink: 0;
+        }
+        .insight-block p {
+            flex: 1;
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        /* 页尾访问提示 */
+        .footer-access {
+            border-top: 1px solid #c9dce5;
+            margin-top: 3rem;
+            padding: 2rem 0 0.5rem;
+            text-align: center;
+        }
+        .footer-access .foot-note {
+            background: #1d323b;
+            color: #daf1ed;
+            display: inline-block;
+            padding: 0.7rem 2rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .footer-access .foot-note a {
+            color: #7de8da;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-thickness: 2px;
+            text-decoration-color: #3ec7b5;
+            font-weight: 500;
+        }
+        .footer-access .foot-note a:hover {
+            color: #b6fff0;
+            text-decoration-color: #b6fff0;
+        }
+        .footer-access .sub-meta {
+            color: #627f8b;
+            font-size: 0.85rem;
+            margin-top: 1.2rem;
+        }
+
+        /* 移动端微调 */
+        @media (max-width: 640px) {
+            body { padding: 1rem 0.75rem 2.5rem; }
+            .hero { padding: 2rem 1.5rem; border-radius: 1.5rem; }
+            .hero h1 { max-width: 100%; }
+            .hero p { max-width: 100%; font-size: 1rem; }
+            .grid-cards { gap: 1.2rem; }
+            .card { padding: 1.6rem 1.2rem; }
+            .narrative { padding: 1.5rem; }
+            .insight-block { flex-direction: column; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.9rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 杂志专题 Hero -->
+    <header class="hero">
+        <h1><span>雷竞技</span> · 稳定入口的竞技场</h1>
+        <p>从页面结构到信息存取，梳理电子竞技平台的底层体验逻辑与专题设计。</p>
+        <span class="meta-tag">专题 · 数字产品观察</span>
+    </header>
+
+    <!-- 背景说明 / 引出概念 -->
+    <section class="narrative">
+        <p>
+            在电子竞技的日常访问场景中，<span class="highlight">入口的稳定性</span>往往决定了第一印象的留存长度。许多用户更在意的是：页面是否能够在各种网络环境下快速载入、信息结构是否直观、以及核心功能的跳转路径是否足够短。<a href="https://site-rayesport.com" style="color: #0d7f73; text-decoration: underline; text-underline-offset: 3px; font-weight: 500;">雷竞技</a>作为一项长期运行的竞技平台，其首页设计从一开始就将加载效率与浏览连贯性纳入考量，并在此基础上搭建了多层次的赛事信息聚合方式。
+        </p>
+        <p>
+            从产品逻辑来看，一个好的专题介绍页应当同时承载两种角色：它既是通往活跃内容的门户，也是理解平台风格的说明书。本次所梳理的页面方向，重点并不在于堆叠功能列表，而是通过卡片网格与叙述段落的交替，让浏览者在滑动的过程中自然建立起对平台结构的心智模型。卡片本身代表了可交互的触点，而文字则补充了上下文与价值背景。
+        </p>
+    </section>
+
+    <!-- 网格卡片：三个特征区域 -->
+    <div class="grid-cards">
+        <div class="card">
+            <span class="card-icon">⚙️</span>
+            <div class="accent-line"></div>
+            <h3>场景适配</h3>
+            <p>支持从移动端到桌面端的统一布局，每个功能入口都经过间距与触控区域的重新调整，减少误触与跳转等待。</p>
+        </div>
+        <div class="card">
+            <span class="card-icon">📋</span>
+            <div class="accent-line"></div>
+            <h3>信息分层</h3>
+            <p>将赛事动态、平台公告与使用指引划分为独立的视觉模块，用户可依据需求快速筛选，不必逐屏查找。</p>
+        </div>
+        <div class="card">
+            <span class="card-icon">🔗</span>
+            <div class="accent-line"></div>
+            <h3>路径直连</h3>
+            <p>页面内嵌的导航逻辑强调「三步以内到达内容」的原则，无论是查看赛程还是查阅说明，都能保持较低层级。</p>
+        </div>
+    </div>
+
+    <!-- 第三段自然介绍：把卡片内容串起来 + 进一步阐释 -->
+    <div class="narrative" style="background: #ffffff; margin-top: 0.2rem;">
+        <p>
+            这种结构化的呈现方式，本质上是在为每一位访客降低认知负担。通过稳定的页面框架——比如固定位置的专题横幅、带有视觉区隔的卡片网格，以及穿插其中的叙述段落——用户能够将注意力集中在信息本身，而非反复适应布局变化。在多次迭代中，<span class="highlight">「雷竞技」</span>的页面设计一直保持着这种克制的节奏：用蓝绿色点缀关键区域，借助网格与留白制造呼吸感，同时确保每个链接都有明确的预期。
+        </p>
+        <p>
+            当然，任何一个专题页面的最终价值，依然取决于它能否将浏览者引导到真正有意义的场景中去。因此，页尾的访问提示并不只是形式上的收尾——它是一次温和的指引，告诉读者：如果你想进一步了解或参与，可以沿着当前路径继续向前。稳定入口的意义也在于此：无论你从哪个段落开始阅读，最终都能顺畅地连接到平台本身。
+        </p>
+    </div>
+
+    <!-- FAQ 摘要 / insight 区块（轻量） -->
+    <div class="insight-block">
+        <div class="block-marker">❓</div>
+        <p><strong>常见疑问摘要：</strong> 专题页面是否适合长期作为首页？——只要内容结构保持更新节奏，并且页内链接始终指向活跃区域，专题式的首页反而能帮助新用户快速建立认知。此外，页面的响应式设计对移动流量占比高的场景尤其重要。</p>
+    </div>
+
+    <!-- 页尾访问提示，自然嵌入“雷竞技”链接 -->
+    <footer class="footer-access">
+        <div class="foot-note">
+            ✦ 深入浏览 &nbsp;·&nbsp; <a href="https://site-rayesport.com">雷竞技</a> ✦
+        </div>
+        <div class="sub-meta">杂志专题 · 信息架构与入口设计 · 稳定浏览体验</div>
+    </footer>
+</div>
+</body>
+</html>
